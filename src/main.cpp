@@ -29,15 +29,15 @@ void estado_2(){
 
 void estado_3(){
   red_led = 0;
-  yellow_led = led_aux;
+  yellow_led = 1;
   green_led = 0;
-  ticker.attach(ticker_a,1.0);
 }
 
 void estado_A(){
   red_led = 0;
-  yellow_led = 0;
+  yellow_led = led_aux;
   green_led = 0;
+  ticker.attach(ticker_a,1.0);
 }
 
 void estado_O(){
