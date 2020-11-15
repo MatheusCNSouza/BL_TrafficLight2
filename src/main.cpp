@@ -11,7 +11,7 @@ int state = state_1;
 float led_aux = 1.0f;
 Timeout timeout;
 int tbt = 0;
-int prev;
+int previous;
 
 // void btCall(){
 
@@ -45,7 +45,7 @@ void estado_3(){
 }
 
 void estado_A(int pre){
-  prev = pre;
+  previous = pre;
   state = state_A;
   red_led = 0;
   yellow_led = led_aux;
@@ -74,34 +74,37 @@ void time_transition(){
     default:
       break;
     }
-  }else{
-    state = 0;
-    estado_1();
-    }
+  }else estado_1();
   }
 
   void btn_transition(){
-    if (tbt > 10){
+    int val = tbt;
+    tbt = 0;
+    if (val > 10){
       if (state == state_O) estado_1();
       else estado_O();
       } else if (state == state_1){
-        if (tbt == 10) estado_2();
-        else if (tbt >= 3) estado_A(0);
+        if (val == 10) estado_2();
+        else if (val >= 3) estado_A(0);
       } else if (state == state_2 ){
-        if (tbt >= 3) estado_A(1);
+        if (val >= 3) estado_A(1);
         else estado_3();
       } else if (state == state_3 ){
-        if (tbt >= 3) estado_A(2);      
+        if (val >= 3) estado_A(2);      
       } else if (state == state_A ){
-        if (prev == )
+        if (previous == 0) estado_1();
+        else if (previous == 1) estado_2();
+        else if (previous == 2) estado_3();
     }
     tbt = 0;
   }
 
   void btn_counter(){
     tbt++;
-    wait_ms(1000);
-    printf("count up");
+    while (tbt >=1){
+      wait_ms(1000);
+      printf("count up");
+    }
   }
 
 int main() {
