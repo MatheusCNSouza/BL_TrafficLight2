@@ -13,10 +13,6 @@ Timeout timeout;
 int tbt = 0;
 int previous;
 
-// void btCall(){
-
-// }
-
 void ticker_a(){
   static int a_aux = 1;
   a_aux = !a_aux;
@@ -109,8 +105,8 @@ void time_transition(){
 
 int main() {
   estado_1();
-  btn.fall(&btn_counter);
-  btn.rise(&btn_transition);
+  btn.rise(&btn_counter);
+  btn.fall(&btn_transition);
   timeout.attach (&time_transition, times[state]);
   while(1) {
     wait_ms(10);
